@@ -1,4 +1,5 @@
-/config/Caddyfile
-/docker-compose.override.yml
-/dev-postgres/.env
-/dev/.env
+config/*.env
+!config/prod.env.example
+__pycache__/
+.venv/
+*.pyc

@@ -1,0 +1,2 @@
+# Default schedule if CRONOMETER_CRON is not provided
+0 3 * * * /usr/bin/env python /app/main.py

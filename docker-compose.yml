@@ -37,7 +37,7 @@ services:
       - static:/wger/static:ro
       - media:/wger/media:ro
     ports:
-      - "80:80"
+      - "5555:80"
     healthcheck:
       test: service nginx status
       interval: 10s
@@ -112,6 +112,16 @@ services:
     depends_on:
       celery_worker:
         condition: service_healthy
+
+  # Cronometer -> wger daily sync sidecar
+  cronometer_sync:
+    build: ./sync/cronometer
+    env_file:
+      - ./config/prod.env
+    depends_on:
+      web:
+        condition: service_healthy
+    restart: unless-stopped
 
 volumes:
   postgres-data:
